@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    './views/*.html',
+    './views/**/*.{html,ejs}',
   ],
   theme: {
     extend: {},
