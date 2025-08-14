@@ -9,7 +9,8 @@ const storeRouter = require("./routes/storeRouter")
 const hostRouter = require("./routes/hostRouter")
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
-const {mongoConnect} = require("./utils/databaseUtil");
+//const {mongoConnect} = require("./utils/databaseUtil");
+const mongoose = require("mongoose");
 
 
 const app = express();
@@ -26,9 +27,19 @@ app.use(express.static(path.join(rootDir, 'public')))
 app.use(errorsController.pageNotFound);
 
 const PORT = 3001;
-mongoConnect(() => {
 
+
+ 
+mongoose.connect( 'mongodb+srv://root:root@completecoding1.k2ocptn.mongodb.net/?retryWrites=true&w=majority&appName=CompleteCoding1/airbnb')
+.then(()=>
+
+{
+  console.log('Connected to MongoDB');
   app.listen(PORT, () => {
     console.log(`Server running on address http://localhost:${PORT}`);
   });
+
+})
+.catch(err => {
+  console.error('Failed to connect to MongoDB', err);
 });

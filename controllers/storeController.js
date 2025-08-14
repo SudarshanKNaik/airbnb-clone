@@ -3,7 +3,7 @@ const Home = require("../models/home");
 const { getDB } = require('../utils/databaseUtil');
 
 exports.getIndex = (req, res, next) => {
-  Home.fetchAll().then((registeredHomes) =>
+  Home.find().then((registeredHomes) =>
     res.render("store/index", {
       registeredHomes: registeredHomes,
       pageTitle: "airbnb Home",
@@ -13,7 +13,7 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getHomes = (req, res, next) => {
-   Home.fetchAll().then((registeredHomes) =>
+   Home.find().then((registeredHomes) =>
     res.render("store/home-list", {
       registeredHomes: registeredHomes,
       pageTitle: "Homes List",
@@ -33,7 +33,7 @@ exports.getFavouriteList = (req, res, next) => {
   Favourite.getFavourites()
     .then(favourites => {
       favourites = favourites.map(fav => fav.houseId);
-      Home.fetchAll()
+      Home.find()
         .then(registeredHomes => {
           const favouriteHomes = registeredHomes.filter(home =>
             favourites.includes(home._id.toString())
