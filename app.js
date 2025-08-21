@@ -6,6 +6,7 @@ const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const DB_PATH = "mongodb+srv://root:root@completecoding1.k2ocptn.mongodb.net/";
+const multer= require('multer');
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
@@ -25,7 +26,21 @@ const store = new MongoDBStore({
   collection: 'sessions'
 });
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const multerOptions={
+  storage,
+}
+
 app.use(express.urlencoded());
+
+app.use(multer(multerOptions).single('photo')); // For handling file uploads
 app.use(session({
   secret: "KnowledgeGate AI with Complete Coding",
   resave: false,
