@@ -151,9 +151,6 @@ airbnb-Clone/
 - File upload restrictions (images only)
 - CSRF protection through session management
 
-## 📸 Screenshots
-
-
 
 ## 🤝 Contributing
 
@@ -169,7 +166,7 @@ This project is licensed under the ISC License.
 
 ## 👨‍💻 Author
 
-*Your Name*
+*Sudarshan K Naik*
 
 ## 🙏 Acknowledgments
 
