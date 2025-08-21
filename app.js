@@ -33,14 +33,23 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
-})
+});
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 const multerOptions={
-  storage,
+  storage,fileFilter
 }
 
 app.use(express.urlencoded());
-
 app.use(multer(multerOptions).single('photo')); // For handling file uploads
+app.use("/uploads", express.static(path.join(rootDir, 'uploads')));
+app.use("/host/uploads", express.static(path.join(rootDir, 'uploads')));
+app.use("/homes/uploads", express.static(path.join(rootDir, 'uploads')));
 app.use(session({
   secret: "KnowledgeGate AI with Complete Coding",
   resave: false,
