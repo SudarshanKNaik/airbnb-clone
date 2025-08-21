@@ -1,6 +1,9 @@
 # 🏠 Airbnb Clone
 
 A full-stack web application that replicates the core functionality of Airbnb, built with Node.js, Express, MongoDB, and EJS templating engine.
+![](./airbnb3.png)
+![](./airbnb2.png)
+![](./airbnb1.png)
 
 ## ✨ Features
 
